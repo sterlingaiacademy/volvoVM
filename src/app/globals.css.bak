@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  
+  --mahindra-red: #e31837;
+  --mahindra-red-dark: #b3122b;
+  --mahindra-black: #000000;
+  --mahindra-dark: #050505;
+  --mahindra-light: #f5f5f5;
+  --mahindra-gray: #e0e0e0; /* lighter gray for light mode */
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --mahindra-gray: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-mahindra-red: var(--mahindra-red);
+  --color-mahindra-red-dark: var(--mahindra-red-dark);
+  --color-mahindra-black: var(--mahindra-black);
+  --color-mahindra-dark: var(--mahindra-dark);
+  --color-mahindra-light: var(--mahindra-light);
+  --color-mahindra-gray: var(--mahindra-gray);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--mahindra-red);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mahindra-red-dark);
+}
+
+/* Eye-Popping Animations */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  70% { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(227, 24, 55, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(227, 24, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(227, 24, 55, 0); }
+}
+
+.animate-fade-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-pop {
+  animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
