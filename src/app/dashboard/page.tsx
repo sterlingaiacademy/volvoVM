@@ -53,8 +53,8 @@ export default async function DashboardOverview() {
 
         let vehicle = log["Vehicle Model"]?.trim();
         if (vehicle && vehicle !== "-") {
-          if (vehicle.toLowerCase().includes("xuv seven")) vehicle = "XUV700";
-          if (vehicle.toLowerCase().includes("xuv three")) vehicle = "XUV300";
+          if (vehicle.toLowerCase().includes("xc ninety")) vehicle = "XC90";
+          if (vehicle.toLowerCase().includes("xc sixty")) vehicle = "XC60";
           vehicleCounts[vehicle] = (vehicleCounts[vehicle] || 0) + 1;
         }
       });

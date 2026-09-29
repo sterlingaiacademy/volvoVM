@@ -10,8 +10,8 @@ export function LeadSourceChart({ data }: { data: any[] }) {
     let v = log["Vehicle Model"]?.trim();
     if (v && v !== "-") {
       // Normalize common duplicates slightly
-      if (v.toLowerCase().includes("xuv seven")) v = "XUV700";
-      if (v.toLowerCase().includes("xuv three")) v = "XUV300";
+      if (v.toLowerCase().includes("xc ninety")) v = "XC90";
+      if (v.toLowerCase().includes("xc sixty")) v = "XC60";
       vehicleCounts[v] = (vehicleCounts[v] || 0) + 1;
     }
   });

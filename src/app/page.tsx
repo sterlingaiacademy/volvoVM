@@ -9,8 +9,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const liveCallVariants = [
   '"I would like to book a test drive."',
-  '"What are the EMI options for Scorpio-N?"',
-  '"Is my XUV700 ready for service pickup?"',
+  '"What are the EMI options for XC60?"',
+  '"Is my XC90 ready for service pickup?"',
   '"Can I reschedule my appointment to Friday?"'
 ];
 
