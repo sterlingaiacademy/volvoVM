@@ -10,7 +10,12 @@ async function getConversations() {
     headers: { "xi-api-key": API_KEY },
     cache: "no-store"
   });
-  if (!res.ok) throw new Error("Failed to fetch conversations");
+  if (!res.ok) {
+    console.error("ElevenLabs API Error:", res.status, res.statusText);
+    const errText = await res.text();
+    console.error("ElevenLabs Error Body:", errText);
+    throw new Error(`Failed to fetch conversations: ${res.status} ${res.statusText}`);
+  }
   const data = await res.json();
   return data.conversations || [];
 }

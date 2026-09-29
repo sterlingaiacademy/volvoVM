@@ -58,8 +58,8 @@ export default function LandingPage() {
       }`}>
         <div className="flex items-center gap-3 pointer-events-auto">
           {/* Always white when at top. When scrolled, hide in light mode, show in dark mode */}
-          <img src="/logo_dark.png" alt="Volvo Logo" className={`h-[60px] md:h-[85px] w-auto object-contain transition-all drop-shadow-md ${scrolled ? 'hidden dark:block' : 'block'}`} />
-          <img src="/logo_transparent.png" alt="Volvo Logo" className={`h-[60px] md:h-[85px] w-auto object-contain transition-all ${scrolled ? 'block dark:hidden' : 'hidden'}`} />
+          <img src="/logo_emblem.png" alt="Volvo Logo" className={`h-[60px] md:h-[85px] w-auto object-contain transition-all drop-shadow-md ${scrolled ? 'hidden dark:block' : 'block'}`} />
+          <img src="/logo_emblem.png" alt="Volvo Logo" className={`h-[60px] md:h-[85px] w-auto object-contain transition-all ${scrolled ? 'block dark:hidden' : 'hidden'}`} />
         </div>
 
         <div className="flex items-center gap-4 md:gap-6 pointer-events-auto">
@@ -82,7 +82,7 @@ export default function LandingPage() {
           style={{ y: yHero, opacity: opacityHero }}
           className="absolute inset-0 z-0 bg-black"
         >
-          <VideoBackground videoId="erhORDnwJeQ" opacity="opacity-70" />
+          <VideoBackground videoId="volvo1" opacity="opacity-70" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 z-10" />
         </motion.div>
 
@@ -101,7 +101,7 @@ export default function LandingPage() {
             </p>
             <Link 
               href="#features" 
-              className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-white text-Volvo-black font-bold uppercase tracking-widest hover:bg-volvo-blue hover:text-white transition-colors skew-x-[-10deg] shadow-2xl group text-xs md:text-base"
+              className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-volvo-blue hover:text-white transition-colors skew-x-[-10deg] shadow-2xl group text-xs md:text-base"
             >
               <span className="block skew-x-[10deg]">Explore Capabilities</span>
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 skew-x-[10deg] group-hover:translate-x-1 transition-transform" />
@@ -185,7 +185,7 @@ export default function LandingPage() {
           >
              {/* The Video Card */}
              <div className="absolute inset-0 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl">
-               <VideoBackground videoId="HvZHXclEj-Q" opacity="opacity-90" />
+               <VideoBackground videoId="volvo2" opacity="opacity-90" />
                <div className="absolute inset-0 bg-gradient-to-tr from-volvo-blue/30 via-black/40 to-transparent z-10" />
              </div>
              
@@ -270,8 +270,8 @@ export default function LandingPage() {
 
       {/* CTA Footer - With Third YouTube Video */}
       <footer className="py-20 md:py-32 bg-black text-center relative overflow-hidden z-20">
-        <VideoBackground videoId="Kne9fiwdxpk" opacity="opacity-40" />
-        <div className="absolute inset-0 bg-Volvo-black/60 z-10" />
+        <VideoBackground videoId="volvo3" opacity="opacity-40" />
+        <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="relative z-30 max-w-3xl mx-auto px-6">
           <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-6 text-white drop-shadow-md">Experience the AI Voice Agent</h2>
           <p className="text-gray-300 text-lg mb-10 drop-shadow-md">Access the admin dashboard to monitor live calls, view analytics, and trigger outbound interactions.</p>
