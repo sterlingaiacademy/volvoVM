@@ -18,7 +18,7 @@ export default async function DashboardOverview() {
   let logs: any[] = [];
 
   try {
-    const csvUrl = "https://docs.google.com/spreadsheets/d/1EuYUHCElFWq6AgsA-FWFGfnRCxQTOdKG_73725C0fXg/export?format=csv";
+    const csvUrl = "https://docs.google.com/spreadsheets/d/1o2IezjQKSX_pVVI_9x7l7DhTDRH4c0KfLZ_AT3dacaw/export?format=csv";
     const res = await fetch(csvUrl, { cache: "no-store" });
     
     if (res.ok) {

@@ -97,7 +97,7 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
         
         <div className="flex flex-wrap gap-3 w-full sm:w-auto">
           <a 
-            href="https://docs.google.com/spreadsheets/d/1EuYUHCElFWq6AgsA-FWFGfnRCxQTOdKG_73725C0fXg/edit" 
+            href="https://docs.google.com/spreadsheets/d/1o2IezjQKSX_pVVI_9x7l7DhTDRH4c0KfLZ_AT3dacaw/edit" 
             target="_blank" 
             rel="noreferrer"
             className="flex-1 sm:flex-none justify-center flex items-center gap-2 px-4 py-3 md:py-2 bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors border border-gray-200 dark:border-white/10 text-sm font-medium"
