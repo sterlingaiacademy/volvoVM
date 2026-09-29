@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     const credPath = path.join(process.cwd(), 'credentials.json');
     let validUser = "admin";
-    let validPass = "mahindra";
+    let validPass = "Volvo";
 
     if (fs.existsSync(credPath)) {
       const data = fs.readFileSync(credPath, 'utf8');

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-mahindra-red: #e31837;
-  --color-mahindra-red-dark: #b3122b;
-  --color-mahindra-black: #000000;
-  --color-mahindra-dark: #050505;
-  --color-mahindra-light: #f5f5f5;
-  --color-mahindra-gray: #e0e0e0;
+  --color-volvo-blue: #003057;
+  --color-volvo-blue-dark: #002244;
+  --color-volvo-black: #000000;
+  --color-volvo-dark: #121212;
+  --color-volvo-light: #f5f5f5;
+  --color-volvo-gray: #e0e0e0;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -38,11 +38,11 @@ body {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-mahindra-red);
+  background: var(--color-volvo-blue);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-mahindra-red-dark);
+  background: var(--color-volvo-blue-dark);
 }
 
 .animate-fade-up {

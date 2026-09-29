@@ -63,11 +63,11 @@ export default function ConfigPage() {
           
           {/* Dashboard Credentials Settings */}
           <div className="group bg-white dark:bg-[#050505] border border-gray-100 dark:border-white/5 p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-mahindra-red/5 rounded-full blur-3xl -ml-32 -mt-32 transition-transform group-hover:scale-150 duration-700 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-64 h-64 bg-volvo-blue/5 rounded-full blur-3xl -ml-32 -mt-32 transition-transform group-hover:scale-150 duration-700 pointer-events-none" />
             
             <h2 className="text-xl font-bold uppercase tracking-widest mb-8 text-gray-800 dark:text-gray-200 flex items-center gap-3 relative z-10">
-              <div className="w-10 h-10 rounded-2xl bg-mahindra-red/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <ShieldCheck className="w-5 h-5 text-mahindra-red" />
+              <div className="w-10 h-10 rounded-2xl bg-volvo-blue/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <ShieldCheck className="w-5 h-5 text-volvo-blue" />
               </div>
               <span>Admin Credentials</span>
             </h2>
@@ -82,7 +82,7 @@ export default function ConfigPage() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Enter new username"
-                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-mahindra-red/50 focus:border-mahindra-red transition-all duration-300"
+                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-volvo-blue/50 focus:border-volvo-blue transition-all duration-300"
                   />
                 </div>
               </div>
@@ -96,7 +96,7 @@ export default function ConfigPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter new password"
-                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-mahindra-red/50 focus:border-mahindra-red transition-all duration-300"
+                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-volvo-blue/50 focus:border-volvo-blue transition-all duration-300"
                   />
                 </div>
               </div>
@@ -110,7 +110,7 @@ export default function ConfigPage() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirm new password"
-                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-mahindra-red/50 focus:border-mahindra-red transition-all duration-300"
+                    className="w-full bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-white/10 py-2.5 pl-11 pr-4 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-volvo-blue/50 focus:border-volvo-blue transition-all duration-300"
                   />
                 </div>
               </div>
@@ -119,7 +119,7 @@ export default function ConfigPage() {
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className="w-full py-3 bg-mahindra-red hover:bg-mahindra-red-dark text-white font-extrabold uppercase tracking-widest text-sm transition-all duration-300 flex justify-center items-center gap-3 rounded-2xl shadow-lg hover:shadow-mahindra-red/40 hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:hover:shadow-none"
+                  className="w-full py-3 bg-volvo-blue hover:bg-volvo-blue-dark text-white font-extrabold uppercase tracking-widest text-sm transition-all duration-300 flex justify-center items-center gap-3 rounded-2xl shadow-lg hover:shadow-volvo-blue/40 hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:hover:-translate-y-0 disabled:hover:shadow-none"
                 >
                   {status === 'loading' ? (
                     <><Loader2 className="w-5 h-5 animate-spin" /> Saving Changes...</>
@@ -148,14 +148,14 @@ export default function ConfigPage() {
 
         <div className="space-y-8 animate-fade-up" style={{ animationDelay: '200ms' }}>
           {/* Agent Settings Note */}
-          <div className="bg-mahindra-red/5 border border-mahindra-red/20 p-6 rounded-3xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-mahindra-red/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+          <div className="bg-volvo-blue/5 border border-volvo-blue/20 p-6 rounded-3xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-volvo-blue/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             
             <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:rotate-12 pointer-events-none">
-              <Bot className="w-32 h-32 text-mahindra-red" />
+              <Bot className="w-32 h-32 text-volvo-blue" />
             </div>
 
-            <h3 className="text-xs font-black uppercase tracking-widest text-mahindra-red flex items-center gap-2 mb-3 relative z-10">
+            <h3 className="text-xs font-black uppercase tracking-widest text-volvo-blue flex items-center gap-2 mb-3 relative z-10">
               <Settings className="w-4 h-4 animate-[spin_4s_linear_infinite]" />
               AI Behavior Profile
             </h3>

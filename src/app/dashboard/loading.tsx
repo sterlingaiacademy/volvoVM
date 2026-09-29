@@ -34,7 +34,7 @@ export default function DashboardLoading() {
       <div className="fixed bottom-8 right-8 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-full py-3 px-5 flex items-center gap-4 shadow-2xl z-50 backdrop-blur-xl">
         <div className="relative w-5 h-5 shrink-0">
           <div className="absolute inset-0 rounded-full border-2 border-gray-200 dark:border-white/10"></div>
-          <div className="absolute inset-0 rounded-full border-2 border-mahindra-red border-t-transparent animate-spin"></div>
+          <div className="absolute inset-0 rounded-full border-2 border-volvo-blue border-t-transparent animate-spin"></div>
         </div>
         <div className="text-gray-600 dark:text-gray-300 font-bold tracking-widest uppercase text-[10px]">
           Syncing Live Data...

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Auto Agent - Mahindra",
+  title: "Auto Agent - Volvo",
   description: "24/7 Intelligent Voice Receptionist",
 };
 

@@ -70,7 +70,7 @@ export default async function PipelinePage() {
           </h1>
           <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 font-medium">AI-generated pipeline based on conversational outcomes.</p>
         </div>
-        <Link href="/dashboard" className="text-xs font-bold text-mahindra-red uppercase tracking-widest hover:text-mahindra-red-dark transition-colors bg-mahindra-red/10 px-4 py-2.5 sm:py-2 rounded-full hover:scale-105 transform duration-300 w-full sm:w-auto text-center">
+        <Link href="/dashboard" className="text-xs font-bold text-volvo-blue uppercase tracking-widest hover:text-volvo-blue-dark transition-colors bg-volvo-blue/10 px-4 py-2.5 sm:py-2 rounded-full hover:scale-105 transform duration-300 w-full sm:w-auto text-center">
           &larr; Back to Dashboard
         </Link>
       </header>
@@ -124,7 +124,7 @@ function PipelineColumn({ title, count, color, items, delay }: { title: string, 
 function PipelineCard({ item, i }: { item: any, i: number }) {
   return (
     <div 
-      className="bg-gray-50 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 p-5 rounded-2xl shadow-sm hover:shadow-xl hover:border-mahindra-red/50 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 group cursor-grab active:cursor-grabbing animate-fade-up relative overflow-hidden"
+      className="bg-gray-50 dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 p-5 rounded-2xl shadow-sm hover:shadow-xl hover:border-volvo-blue/50 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 group cursor-grab active:cursor-grabbing animate-fade-up relative overflow-hidden"
       style={{ animationDelay: `${(i * 50)}ms` }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -140,7 +140,7 @@ function PipelineCard({ item, i }: { item: any, i: number }) {
       {(item["Vehicle Model"] && item["Vehicle Model"] !== "-") && (
         <div className="mb-4 relative z-10">
           <span className="text-[9px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Vehicle Focus</span>
-          <span className="text-[10px] font-extrabold text-mahindra-red bg-mahindra-red/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{item["Vehicle Model"]}</span>
+          <span className="text-[10px] font-extrabold text-volvo-blue bg-volvo-blue/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{item["Vehicle Model"]}</span>
         </div>
       )}
 

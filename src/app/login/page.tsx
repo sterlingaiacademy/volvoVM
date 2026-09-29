@@ -80,7 +80,7 @@ export default function LoginPage() {
       {/* Login Form Container */}
       <div className="relative z-10 w-full max-w-md p-6 md:p-10 mx-4 backdrop-blur-xl bg-black/40 border border-white/10 shadow-2xl rounded-sm">
         <div className="flex justify-center mb-10">
-          <img src="/logo_dark.png" alt="Mahindra Logo" className="h-[60px] w-auto object-contain drop-shadow-xl" />
+          <img src="/logo_dark.png" alt="Volvo Logo" className="h-[60px] w-auto object-contain drop-shadow-xl" />
         </div>
         
         <h1 className="text-2xl font-bold text-white text-center uppercase tracking-widest mb-8">
@@ -89,7 +89,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-6">
           {error && (
-            <div className="bg-mahindra-red/20 border border-mahindra-red text-white text-sm text-center py-3 px-4 rounded-sm animate-pulse">
+            <div className="bg-volvo-blue/20 border border-volvo-blue text-white text-sm text-center py-3 px-4 rounded-sm animate-pulse">
               Invalid credentials.
             </div>
           )}
@@ -100,7 +100,7 @@ export default function LoginPage() {
               type="text" 
               value={username}
               onChange={(e) => { setUsername(e.target.value); setError(false); }}
-              className="w-full bg-white/5 border border-white/20 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-mahindra-red focus:bg-white/10 transition-all placeholder:text-gray-500 font-mono"
+              className="w-full bg-white/5 border border-white/20 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-volvo-blue focus:bg-white/10 transition-all placeholder:text-gray-500 font-mono"
               placeholder="Enter username"
             />
           </div>
@@ -110,7 +110,7 @@ export default function LoginPage() {
               type="password" 
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(false); }}
-              className="w-full bg-white/5 border border-white/20 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-mahindra-red focus:bg-white/10 transition-all placeholder:text-gray-500 font-mono"
+              className="w-full bg-white/5 border border-white/20 text-white rounded-sm px-4 py-3 focus:outline-none focus:border-volvo-blue focus:bg-white/10 transition-all placeholder:text-gray-500 font-mono"
               placeholder="Enter password"
             />
           </div>
@@ -119,7 +119,7 @@ export default function LoginPage() {
             <button 
               type="submit"
               disabled={isLoading}
-              className="w-full px-6 py-4 bg-mahindra-red text-white font-bold text-sm uppercase tracking-widest hover:bg-[#cc0000] transition-colors skew-x-[-10deg] shadow-lg flex justify-center group disabled:opacity-75 disabled:cursor-not-allowed"
+              className="w-full px-6 py-4 bg-volvo-blue text-white font-bold text-sm uppercase tracking-widest hover:bg-[#cc0000] transition-colors skew-x-[-10deg] shadow-lg flex justify-center group disabled:opacity-75 disabled:cursor-not-allowed"
             >
               <span className="skew-x-[10deg] transition-transform flex items-center gap-2">
                 {isLoading ? (

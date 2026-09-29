@@ -81,7 +81,7 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
     const a = document.createElement('a');
     a.setAttribute('hidden', '');
     a.setAttribute('href', url);
-    a.setAttribute('download', 'mahindra_call_logs_export.csv');
+    a.setAttribute('download', 'Volvo_call_logs_export.csv');
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -107,7 +107,7 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
           <button 
             onClick={handleExport}
             disabled={filteredLogs.length === 0}
-            className="flex-1 sm:flex-none justify-center flex items-center gap-2 px-4 py-3 md:py-2 bg-mahindra-red text-white hover:bg-mahindra-red-dark disabled:opacity-50 transition-colors border border-transparent text-sm font-bold uppercase tracking-widest"
+            className="flex-1 sm:flex-none justify-center flex items-center gap-2 px-4 py-3 md:py-2 bg-volvo-blue text-white hover:bg-volvo-blue-dark disabled:opacity-50 transition-colors border border-transparent text-sm font-bold uppercase tracking-widest"
           >
             <Download className="w-4 h-4" /> Export
           </button>
@@ -150,14 +150,14 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
               placeholder="Search by name, phone, vehicle, or enquiry..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-mahindra-red transition-colors rounded-sm"
+              className="w-full bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-volvo-blue transition-colors rounded-sm"
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
             <select 
               value={filterType} 
               onChange={(e) => setFilterType(e.target.value as any)}
-              className="w-full sm:w-auto bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-3 md:py-2.5 px-3 text-sm focus:outline-none focus:border-mahindra-red transition-colors rounded-sm"
+              className="w-full sm:w-auto bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-3 md:py-2.5 px-3 text-sm focus:outline-none focus:border-volvo-blue transition-colors rounded-sm"
             >
               <option value="all">All Types</option>
               <option value="inbound">Inbound Only</option>
@@ -166,7 +166,7 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
             <select 
               value={sortOrder} 
               onChange={(e) => setSortOrder(e.target.value as any)}
-              className="w-full sm:w-auto bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-3 md:py-2.5 px-3 text-sm focus:outline-none focus:border-mahindra-red transition-colors rounded-sm"
+              className="w-full sm:w-auto bg-white dark:bg-[#050505] border border-gray-200 dark:border-white/10 py-3 md:py-2.5 px-3 text-sm focus:outline-none focus:border-volvo-blue transition-colors rounded-sm"
             >
               <option value="newest">Newest First</option>
               <option value="oldest">Oldest First</option>
@@ -228,7 +228,7 @@ export function LogsTableClient({ initialLogs, error }: { initialLogs: any[], er
                         {log["Vehicle Model"] || "-"}
                       </td>
                       <td className="p-4 text-sm">
-                        <span className="inline-block px-2 py-1 text-xs rounded-sm bg-mahindra-red/10 text-mahindra-red font-semibold">
+                        <span className="inline-block px-2 py-1 text-xs rounded-sm bg-volvo-blue/10 text-volvo-blue font-semibold">
                           {enquiry}
                         </span>
                       </td>
