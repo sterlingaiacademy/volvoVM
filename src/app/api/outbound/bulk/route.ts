@@ -18,6 +18,7 @@ export type ContactStatus = {
   phone: string;
   name: string;
   vehicle: string;
+  context?: string;
   status: 'queued' | 'calling' | 'done' | 'failed' | 'skipped';
   error?: string;
 };
@@ -103,6 +104,7 @@ async function processBulkCampaign(contacts: ContactStatus[]) {
         conversation_variables: {
           customer_name: contact.name,
           vehicle: contact.vehicle,
+          context: contact.context,
           Direction: 'Outbound',
           direction: 'Outbound',
           phone: safePhone,
@@ -190,6 +192,7 @@ export async function POST(req: NextRequest) {
         phone: (row.phone || row.Phone || row.PHONE || row.phone_number || row.Phone_Number || '').trim(),
         name: row.customer_name || row.name || row.Name || 'Unknown',
         vehicle: row.vehicle || row.vehicle_name || '',
+        context: row.context || row.Context || '',
         status: 'queued' as const,
       }))
       .filter((c: ContactStatus) => c.phone !== '');
