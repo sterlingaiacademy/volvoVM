@@ -159,7 +159,7 @@ export default function OutboundTriggerPage() {
 
   // ── Download template ──
   const downloadTemplate = () => {
-    const template = "phone,customer_name,vehicle,context\n+919876543210,Rahul Menon,XUV700,Service Reminder for 10 AM tomorrow\n+918765432109,Priya Nair,Scorpio,Follow up on test drive enquiry\n";
+    const template = "phone,customer_name,vehicle,context\n+919876543210,Rahul Menon,XC90,Service Reminder for 10 AM tomorrow\n+918765432109,Priya Nair,XC60,Follow up on test drive enquiry\n";
     const blob = new Blob([template], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -312,14 +312,14 @@ export default function OutboundTriggerPage() {
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase text-gray-500 dark:text-gray-400 mb-2">Vehicle Model</label>
-                <input type="text" value={vehicleName} onChange={e => setVehicleName(e.target.value)} placeholder="e.g. XUV700"
+                <input type="text" value={vehicleName} onChange={e => setVehicleName(e.target.value)} placeholder="e.g. XC90"
                   className="w-full bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-white/10 p-3 text-sm focus:outline-none focus:border-volvo-blue transition-colors dark:text-white text-gray-900" />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold uppercase text-gray-500 dark:text-gray-400 mb-2">Call Context (Optional)</label>
               <textarea rows={4} value={context} onChange={e => setContext(e.target.value)}
-                placeholder="E.g., Remind the customer about their scheduled XUV700 test drive tomorrow at 10 AM."
+                placeholder="E.g., Remind the customer about their scheduled XC90 test drive tomorrow at 10 AM."
                 className="w-full bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-white/10 p-3 text-sm focus:outline-none focus:border-volvo-blue transition-colors resize-none dark:text-white text-gray-900"
               />
             </div>
