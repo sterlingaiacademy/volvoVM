@@ -41,3 +41,11 @@ next-env.d.ts
 
 # Large assets
 *.exe
+
+# Database files
+*.db
+*.sqlite
+*.db-journal
+audiences.json
+captured_leads.json
+meta_config.json
