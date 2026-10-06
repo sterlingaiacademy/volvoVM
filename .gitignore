@@ -49,3 +49,5 @@ next-env.d.ts
 audiences.json
 captured_leads.json
 meta_config.json
+campaign_history.json
+campaign_status.json
