@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { Calendar, Clock, MapPin, User, Car, Bell } from "lucide-react";
+import { Calendar, Clock, MapPin, User, Car, Bell, AlertTriangle } from "lucide-react";
 
 export function UpcomingEventsBoard({ data }: { data: any[] }) {
   const [selectedDate, setSelectedDate] = useState<string>("today");
@@ -11,6 +11,18 @@ export function UpcomingEventsBoard({ data }: { data: any[] }) {
   const tomorrowObj = new Date();
   tomorrowObj.setDate(tomorrowObj.getDate() + 1);
   const tomorrow = tomorrowObj.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+
+  const isDateOver = (dateStr: string) => {
+    if (!dateStr || dateStr.toLowerCase() === "today" || dateStr.toLowerCase() === "tomorrow") return false;
+    try {
+      const evtDate = new Date(dateStr);
+      const todayDate = new Date(today);
+      if (!isNaN(evtDate.getTime()) && evtDate < todayDate) {
+        return true;
+      }
+    } catch(e) {}
+    return false;
+  };
 
   // Extract all events from logs
   const allEvents: any[] = [];
@@ -132,38 +144,72 @@ export function UpcomingEventsBoard({ data }: { data: any[] }) {
             <p className="text-xs font-bold uppercase tracking-widest">No Events Found</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {displayEvents.map((event, i) => (
-              <div 
-                key={event.id}
-                className="group bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 p-5 rounded-2xl hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xl hover:border-volvo-blue/30 dark:hover:border-volvo-blue/30 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
-                style={{ animationDelay: `${i * 100}ms`, animationFillMode: "both" }}
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <span className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${
-                    event.type === "service" 
-                      ? "bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-400"
-                      : "bg-volvo-blue/10 text-volvo-blue"
-                  }`}>
-                    {event.title}
-                  </span>
-                  <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs font-medium">
-                    <Clock className="w-3.5 h-3.5" />
-                    {event.time}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayEvents.map((evt, i) => {
+              const over = isDateOver(evt.date);
+              return (
+                <div 
+                  key={evt.id} 
+                  className={`group relative bg-white dark:bg-[#050505] border p-6 rounded-2xl transition-all duration-500 overflow-hidden ${
+                    over 
+                      ? 'border-gray-200 dark:border-white/5 opacity-50 grayscale hover:opacity-100 hover:grayscale-0' 
+                      : 'border-gray-100 dark:border-white/5 hover:border-volvo-blue/30 hover:shadow-xl hover:-translate-y-1'
+                  }`}
+                  style={{ animationDelay: `${i * 100}ms`, animationFillMode: "both" }}
+                >
+                  {/* Accent glow on hover */}
+                  {!over && <div className={`absolute -bottom-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700 ${evt.type === 'service' ? 'bg-orange-500' : 'bg-volvo-blue'}`} />}
+                  
+                  <div className="flex justify-between items-start mb-6 relative z-10">
+                    <h3 className={`font-extrabold uppercase text-xs tracking-widest ${over ? 'text-gray-500' : 'text-gray-900 dark:text-white'}`}>
+                      {evt.title}
+                    </h3>
+                    <span className={`text-[9px] px-2.5 py-1 rounded-md font-black uppercase tracking-widest shadow-sm ${
+                      over 
+                        ? 'bg-gray-100 text-gray-500 dark:bg-white/5' 
+                        : evt.type === 'service' 
+                          ? 'bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400' 
+                          : 'bg-volvo-blue/10 text-volvo-blue'
+                    }`}>
+                      {evt.type}
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-3 mb-6 relative z-10">
+                    <div className="flex items-center gap-3 text-sm text-gray-500">
+                      <User className="w-4 h-4 text-gray-400" />
+                      <span className="capitalize font-medium">{evt.customer}</span> <span className="font-mono text-xs opacity-50">({evt.phone})</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-gray-500">
+                      <Car className="w-4 h-4 text-gray-400" />
+                      <span className="font-bold uppercase tracking-wider text-xs">{evt.vehicle}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-gray-500">
+                      <MapPin className="w-4 h-4 text-gray-400" />
+                      <span className="text-xs">Kerala Volvo, Kochi</span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-xs font-bold relative z-10">
+                    <div className="flex items-center gap-2 text-gray-500 transition-colors">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span className={over ? 'line-through opacity-70' : ''}>{evt.date}</span>
+                    </div>
+                    {over ? (
+                      <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-red-500/10 text-red-500 border border-red-500/20">
+                        <AlertTriangle className="w-3 h-3" />
+                        <span className="text-[9px] uppercase tracking-widest">Date Over</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-volvo-blue">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span className="font-mono">{evt.time}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
-                
-                <h3 className="text-lg font-black text-gray-900 dark:text-white mb-1 uppercase tracking-tight">{event.customer}</h3>
-                <div className="text-sm font-medium text-volvo-blue mb-4">{event.phone}</div>
-                
-                <div className="pt-4 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-xs font-bold uppercase tracking-wider">
-                    <Car className="w-4 h-4" />
-                    {event.vehicle}
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
