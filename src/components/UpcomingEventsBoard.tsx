@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Calendar, Clock, MapPin, User, Car, Bell } from "lucide-react";
@@ -21,7 +21,7 @@ export function UpcomingEventsBoard({ data }: { data: any[] }) {
     const time = log["Visit Time"]?.trim() || "Time TBD";
     
     if (visitDay && visitDay !== "-") {
-            let dateString = visitDay;
+      let dateString = visitDay;
       const callDateStr = log["Call Date"];
       
       if (callDateStr && callDateStr !== "-") {
@@ -36,18 +36,19 @@ export function UpcomingEventsBoard({ data }: { data: any[] }) {
               tmrw.setDate(tmrw.getDate() + 1);
               dateString = tmrw.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
             } else {
-              // Try to parse natural date strings like "Wednesday, 7 October"
-              let vDate = new Date(visitDay);
+              // Normalize date by removing day names like "Wednesday, " to fix Firefox/Safari parsing
+              const cleanVisitDay = visitDay.replace(/^[A-Za-z]+,\s*/, "").trim();
+              
+              let vDate = new Date(cleanVisitDay);
               if (!isNaN(vDate.getTime())) {
                 if (vDate.getFullYear() === 2001 || vDate.getFullYear() < 2020) {
-                  vDate = new Date(`${visitDay} ${callDate.getFullYear()}`);
+                  vDate = new Date(`${cleanVisitDay} ${callDate.getFullYear()}`);
                 }
                 if (!isNaN(vDate.getTime())) {
                   dateString = vDate.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
                 }
               } else {
-                // If direct parse fails, try appending the year explicitly
-                let vDateWithYear = new Date(`${visitDay} ${callDate.getFullYear()}`);
+                let vDateWithYear = new Date(`${cleanVisitDay} ${callDate.getFullYear()}`);
                 if (!isNaN(vDateWithYear.getTime())) {
                    dateString = vDateWithYear.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
                 }
@@ -102,86 +103,63 @@ export function UpcomingEventsBoard({ data }: { data: any[] }) {
           </div>
         </div>
         
-        {/* Date Selector */}
-        <div className="flex bg-gray-50 dark:bg-black/50 p-1.5 rounded-xl border border-gray-100 dark:border-white/5 relative z-10 backdrop-blur-xl overflow-x-auto max-w-full hide-scrollbar snap-x">
-          <button 
-            onClick={() => setSelectedDate("today")}
-            className={`px-5 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 ${selectedDate === "today" ? "bg-white dark:bg-[#222] text-volvo-blue shadow-sm" : "text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
-          >
-            Today
+        <div className="flex items-center bg-gray-50 dark:bg-white/5 p-1 rounded-xl relative z-10 w-full lg:w-auto overflow-x-auto">
+          {["today", "tomorrow", "all"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setSelectedDate(tab)}
+              className={`flex-1 lg:flex-none px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+                selectedDate === tab 
+                  ? "bg-white dark:bg-zinc-800 text-gray-900 dark:text-white shadow-sm" 
+                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+          <div className="w-px h-4 bg-gray-300 dark:bg-white/20 mx-2" />
+          <button className="px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-2">
+            mm/dd/yyyy <Calendar className="w-3 h-3" />
           </button>
-          <button 
-            onClick={() => setSelectedDate("tomorrow")}
-            className={`px-5 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 ${selectedDate === "tomorrow" ? "bg-white dark:bg-[#222] text-volvo-blue shadow-sm" : "text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
-          >
-            Tomorrow
-          </button>
-          <button 
-            onClick={() => setSelectedDate("all")}
-            className={`px-5 py-2 text-[10px] font-extrabold uppercase tracking-widest rounded-lg transition-all duration-300 ${selectedDate === "all" ? "bg-white dark:bg-[#222] text-volvo-blue shadow-sm" : "text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
-          >
-            All
-          </button>
-          <div className="flex items-center border-l border-gray-200 dark:border-white/10 pl-3 ml-2">
-            <input 
-              type="date"
-              value={selectedDate !== "today" && selectedDate !== "tomorrow" && selectedDate !== "all" ? selectedDate : ""}
-              onChange={(e) => {
-                if (e.target.value) setSelectedDate(e.target.value);
-              }}
-              className="bg-transparent text-gray-500 dark:text-gray-400 text-xs font-mono focus:outline-none focus:text-volvo-blue dark:focus:text-white [&::-webkit-calendar-picker-indicator]:opacity-50 dark:[&::-webkit-calendar-picker-indicator]:invert hover:[&::-webkit-calendar-picker-indicator]:opacity-100 transition-opacity cursor-pointer"
-            />
-          </div>
         </div>
       </div>
 
-      {/* Events List */}
-      <div className="p-8 bg-gray-50/50 dark:bg-black/20 flex-1 min-h-[300px] max-h-[450px] overflow-y-auto">
+      {/* Content */}
+      <div className="p-6 md:p-8 min-h-[300px] relative">
         {displayEvents.length === 0 ? (
-          <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-4 pt-12">
-            <Calendar className="w-12 h-12 opacity-20" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 animate-in fade-in duration-500">
+            <Calendar className="w-12 h-12 mb-4 opacity-20" />
             <p className="text-xs font-bold uppercase tracking-widest">No Events Found</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayEvents.map((evt, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {displayEvents.map((event, i) => (
               <div 
-                key={i} 
-                className="group relative bg-white dark:bg-[#050505] border border-gray-100 dark:border-white/5 p-6 rounded-2xl hover:border-volvo-blue/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                key={event.id}
+                className="group bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 p-5 rounded-2xl hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xl hover:border-volvo-blue/30 dark:hover:border-volvo-blue/30 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+                style={{ animationDelay: `${i * 100}ms`, animationFillMode: "both" }}
               >
-                {/* Accent glow on hover */}
-                <div className={`absolute -bottom-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700 ${evt.type === 'service' ? 'bg-blue-500' : 'bg-green-500'}`} />
-                
-                <div className="flex justify-between items-start mb-6 relative z-10">
-                  <h3 className="font-extrabold text-gray-900 dark:text-white uppercase text-xs tracking-widest">{evt.title}</h3>
-                  <span className={`text-[9px] px-2.5 py-1 rounded-md font-black uppercase tracking-widest shadow-sm ${evt.type === 'service' ? 'bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400' : 'bg-green-50 text-green-600 dark:bg-green-500/10 dark:text-green-400'}`}>
-                    {evt.type}
+                <div className="flex justify-between items-start mb-4">
+                  <span className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-widest ${
+                    event.type === "service" 
+                      ? "bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-400"
+                      : "bg-volvo-blue/10 text-volvo-blue"
+                  }`}>
+                    {event.title}
                   </span>
-                </div>
-                
-                <div className="space-y-3 mb-6 relative z-10">
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
-                    <User className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-700 dark:text-gray-200 capitalize font-medium">{evt.customer}</span> <span className="font-mono text-xs opacity-50">({evt.phone})</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
-                    <Car className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-900 dark:text-white font-bold uppercase tracking-wider text-xs">{evt.vehicle}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-500">
-                    <MapPin className="w-4 h-4 text-gray-400" />
-                    <span className="text-xs">Volvo Dealership</span>
+                  <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-xs font-medium">
+                    <Clock className="w-3.5 h-3.5" />
+                    {event.time}
                   </div>
                 </div>
                 
-                <div className="pt-4 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-xs font-bold relative z-10">
-                  <div className="flex items-center gap-2 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-300 transition-colors">
-                    <Calendar className="w-4 h-4 text-volvo-blue" />
-                    <span>{evt.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-gray-300 transition-colors">
-                    <Clock className="w-4 h-4 text-volvo-blue" />
-                    <span>{evt.time}</span>
+                <h3 className="text-lg font-black text-gray-900 dark:text-white mb-1 uppercase tracking-tight">{event.customer}</h3>
+                <div className="text-sm font-medium text-volvo-blue mb-4">{event.phone}</div>
+                
+                <div className="pt-4 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-xs font-bold uppercase tracking-wider">
+                    <Car className="w-4 h-4" />
+                    {event.vehicle}
                   </div>
                 </div>
               </div>
