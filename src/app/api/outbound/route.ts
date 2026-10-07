@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
     if (!data.conversation_variables) data.conversation_variables = {};
     data.conversation_variables.Direction = "Outbound";
     data.conversation_variables.direction = "Outbound";
+    data.conversation_variables.call_type = "OUTBOUND";
     data.conversation_variables.call_id = callId;
     
     // Inject agent_id server-side from env var so it never lives in client code
@@ -58,3 +59,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
